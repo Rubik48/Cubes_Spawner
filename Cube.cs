@@ -35,7 +35,9 @@ public class Cube : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Platform>() && _wasChanged == false)
+        Platform platform = collision.gameObject.GetComponent<Platform>();
+        
+        if (platform != null && _wasChanged == false)
         {
             _wasChanged = true;
             

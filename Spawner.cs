@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
     private Cube _cube;
     
     private int _activeCubes = 0;
+    private float _divide = 2;
 
     private void Awake()
     {
@@ -45,13 +46,16 @@ public class Spawner : MonoBehaviour
 
     private void SpawnCube()
     {
+        float x = Random.Range(-_spawnAreaWidth / _divide, _spawnAreaWidth / _divide);
+        float z = Random.Range(-_spawnAreaWidth / _divide, _spawnAreaWidth / _divide);
+        
         _cube = _cubePool.Get();
         
         _activeCubes++;
 
         _cube.LifeTimeFinished += ReleaseCube;
         
-        _cube.transform.position = new Vector3(Random.Range(-_spawnAreaWidth/2, _spawnAreaWidth/2), _spawnHeight, Random.Range(-_spawnAreaWidth/2, _spawnAreaWidth/2));
+        _cube.transform.position = new Vector3(x, _spawnHeight, z);
     }
 
     private void ReleaseCube(Cube cube)
